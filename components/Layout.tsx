@@ -1,6 +1,11 @@
 import React, { ReactNode } from 'react'
-import { Providers } from './Providers'
+import { Container } from '@chakra-ui/react'
+
 import Head from 'next/head'
+
+import Providers from './Providers'
+import Header from './Header'
+import Footer from './Footer'
 
 type Props = {
   children?: ReactNode
@@ -14,11 +19,11 @@ const Layout = ({ children, title = 'Svix' }: Props) => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-    </header>
-    {children}
-    <footer>
-    </footer>
+    <Container>
+      <Header />
+      {children}
+      <Footer />
+    </Container>
   </Providers>
 )
 
