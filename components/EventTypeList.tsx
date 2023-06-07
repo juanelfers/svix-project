@@ -38,12 +38,8 @@ const EventTypeList: React.FC<EventTypeListProps> = ({ list, editRequest, delete
                     )}
                     {list.map(({ name, description }: EventType, index: number) => (
                         <Tr key={name}>
-                            <Td>
-                                <strong>{name}</strong>
-                            </Td>
-                            <Td>
-                                <em>{description}</em>
-                            </Td>
+                            <Td><strong>{name}</strong></Td>
+                            <Td><em>{description}</em></Td>
                             <Td>
                                 <ButtonGroup py="1">
                                     <Button

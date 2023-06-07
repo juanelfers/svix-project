@@ -7,7 +7,6 @@ import {
     Button,
     Input,
     Textarea,
-    Divider,
     Spinner
 } from '@chakra-ui/react';
 
@@ -62,8 +61,6 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent }) => {
                         mt="2"
                         onChange={handleChange} />
                 </FormLabel>
-
-                <Divider my="4" />
 
                 <ButtonGroup>
                     <Button type="submit" colorScheme="messenger" isDisabled={loading || !isValidForm(eventType)}>
