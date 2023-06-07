@@ -3,11 +3,17 @@ import { useState, useCallback, useEffect } from 'react';
 import {
   Heading,
   useDisclosure,
+  FormLabel,
+  Textarea,
 } from '@chakra-ui/react';
 import EventTypeList from '../components/EventTypeList';
 
+import ConfirmDialog from '../components/ConfirmDialog';
+import PromptDialog from '../components/PromptDialog';
+
 import { EventType } from '../interfaces';
 import svix from '../lib/svix';
+
 
 const IndexPage = () => {
   const [list, setList] = useState<EventType[]>([]);
@@ -83,6 +89,29 @@ const IndexPage = () => {
     <Layout title="Svix Event Types Manager">
       <Heading mb={4}>Event Type List</Heading>
       <EventTypeList list={list} editRequest={editRequest} deleteRequest={deleteRequest} />
+
+      {/* Delete confirm dialog */}
+      <ConfirmDialog
+        isOpen={confirm.isOpen}
+        onClose={onConfirmClose}
+        message="Do you want to delete this event?"
+        onConfirm={handleDelete} />
+
+      {/* Edit dialog */}
+      <PromptDialog
+        isOpen={prompt.isOpen}
+        onCancel={onPromptClose}
+        message="Edit description"
+        onConfirm={handleEdit}>
+        <FormLabel>
+          Description
+          <Textarea
+            mt="2"
+            value={description}
+            name="description"
+            onChange={event => setDescription(event.target.value)} />
+        </FormLabel>
+      </PromptDialog>
     </Layout>
   );
 };
