@@ -7,6 +7,7 @@ import {
     Tr,
     Th,
     Td,
+    Spinner
 } from '@chakra-ui/react'
 
 import { EventType } from '../interfaces';
@@ -23,11 +24,18 @@ const EventTypeList: React.FC<EventTypeListProps> = ({ list, editRequest, delete
         <>
             <Table>
                 <Thead>
-                    <Th>Name</Th>
-                    <Th>Description</Th>
-                    <Th>Actions</Th>
+                    <Tr>
+                        <Th>Name</Th>
+                        <Th>Description</Th>
+                        <Th>Actions</Th>
+                    </Tr>
                 </Thead>
                 <Tbody>
+                    {!list.length && (
+                        <Tr>
+                            <Td colSpan={3}><Spinner size='sm' mr="2" /> Loading...</Td>
+                        </Tr>
+                    )}
                     {list.map(({ name, description }: EventType, index: number) => (
                         <Tr key={name}>
                             <Td>
