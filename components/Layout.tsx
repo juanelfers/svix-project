@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { Providers } from './Providers'
 import Head from 'next/head'
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'Svix' }: Props) => (
-  <div>
+  <Providers>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -18,7 +19,7 @@ const Layout = ({ children, title = 'Svix' }: Props) => (
     {children}
     <footer>
     </footer>
-  </div>
+  </Providers>
 )
 
 export default Layout
