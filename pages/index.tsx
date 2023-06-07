@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import { useState, useCallback, useEffect } from 'react';
-import { Box, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import EventTypeList from '../components/EventTypeList';
 
 import { EventType } from '../interfaces';
@@ -25,17 +25,8 @@ const IndexPage = () => {
 
   return (
     <Layout title="Svix Event Types Manager">
-      <Tabs>
-        <TabList>
-          <Tab>Events</Tab>
-        </TabList>
-
-        <TabPanels>
-          <TabPanel>
-            <EventTypeList list={list} getEventList={getEventList} />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Heading mb={4}>Event Type List</Heading>
+      <EventTypeList list={list} getEventList={getEventList} />
     </Layout>
   );
 };

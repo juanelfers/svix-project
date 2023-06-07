@@ -12,8 +12,21 @@ import {
     Text
 } from '@chakra-ui/react'
 
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+} from '@chakra-ui/react'
+
 import svix from '../lib/svix';
 import { EventType } from '../interfaces';
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
 interface EventTypeListProps {
     list: EventType[]
@@ -75,28 +88,37 @@ const EventTypeList: React.FC<EventTypeListProps> = ({ list, getEventList }) => 
 
     return (
         <>
-            <UnorderedList>
-                {list.map(({ name, description }: EventType, index: number) => (
-                    <ListItem key={name}>
-                        <Flex alignItems="center" gap="2">
-                            <Text whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
-                                {name} - <em>{description}</em>
-                            </Text>
-                            <Spacer />
-                            <ButtonGroup py="1">
-                                <Button
-                                    size="sm"
-                                    colorScheme="messenger"
-                                    onClick={() => editRequest(index)}>Edit</Button>
-                                <Button
-                                    size="sm"
-                                    colorScheme="messenger"
-                                    onClick={() => deleteRequest(index)}>Delete</Button>
-                            </ButtonGroup>
-                        </Flex>
-                    </ListItem>
-                ))}
-            </UnorderedList>
+            <Table>
+                <Thead>
+                    <Th>Name</Th>
+                    <Th>Description</Th>
+                    <Th>Actions</Th>
+                </Thead>
+                <Tbody>
+                    {list.map(({ name, description }: EventType, index: number) => (
+                        <Tr key={name}>
+                            <Td>
+                                <strong>{name}</strong>
+                            </Td>
+                            <Td>
+                                <em>{description}</em>
+                            </Td>
+                            <Td>
+                                <ButtonGroup py="1">
+                                    <Button
+                                        size="sm"
+                                        colorScheme="messenger"
+                                        onClick={() => editRequest(index)}><EditIcon /></Button>
+                                    <Button
+                                        size="sm"
+                                        colorScheme="messenger"
+                                        onClick={() => deleteRequest(index)}><DeleteIcon /></Button>
+                                </ButtonGroup>
+                            </Td>
+                        </Tr>
+                    ))}
+                </Tbody>
+            </Table>
         </>
     )
 }
