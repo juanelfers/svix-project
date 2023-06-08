@@ -7,8 +7,11 @@ import {
     Button,
     Input,
     Textarea,
-    Spinner
+    Spinner,
+    useDisclosure
 } from '@chakra-ui/react';
+
+import PromptDialog from './PromptDialog';
 
 import { EventType } from '../interfaces';
 
@@ -16,14 +19,19 @@ const isValidForm = (eventType: EventType) => Object.values(eventType).every(Boo
 
 interface AddEventFormProps {
     onNewEvent: (name: string, description: string) => void
+    isOpen: boolean
+    onClose: () => void
 }
 
-const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent }) => {
+const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent, isOpen, onClose }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [eventType, setEventType] = useState<EventType>({ name: '', description: '' })
 
     const handleSubmit = async (event: React.SyntheticEvent) => {
         event.preventDefault();
+
+        if (!isValidForm(eventType)) return;
+
         setLoading(true);
 
         // Push event
@@ -40,7 +48,11 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent }) => {
     }
 
     return (
-        <Box as="form" onSubmit={handleSubmit}>
+        <PromptDialog
+            isOpen={isOpen}
+            onCancel={onClose}
+            message="Add new event"
+            onConfirm={handleSubmit}>
             <FormControl>
                 <FormLabel>
                     Event Type Name
@@ -64,14 +76,8 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent }) => {
                         onChange={handleChange} />
                 </FormLabel>
 
-                <ButtonGroup>
-                    <Button type="submit" colorScheme="messenger" isDisabled={loading || !isValidForm(eventType)}>
-                        {loading && <Spinner size='sm' mr="2" />}
-                        Create
-                    </Button>
-                </ButtonGroup>
             </FormControl>
-        </Box>
+        </PromptDialog>
     )
 }
 

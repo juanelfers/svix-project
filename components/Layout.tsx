@@ -12,16 +12,16 @@ type Props = {
 
 const Layout = ({ children, title = 'Svix' }: Props) => (
   <>
-      <Head>
-        <title>{title}</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <Container maxW="960px">
-        <Header />
-        {children}
-        <Footer />
-      </Container>
+    <Head>
+      <title>{title}</title>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
+    <Header />
+    <Container maxW="960px" padding={10} background="white" rounded={5} boxShadow="md" position="relative">
+      {children}
+    </Container>
+    <Footer />
   </>
 )
 

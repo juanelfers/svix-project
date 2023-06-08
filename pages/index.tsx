@@ -5,15 +5,16 @@ import {
   useDisclosure,
   FormLabel,
   Textarea,
+  Button
 } from '@chakra-ui/react';
 import EventTypeList from '../components/EventTypeList';
 
 import ConfirmDialog from '../components/ConfirmDialog';
 import PromptDialog from '../components/PromptDialog';
+import AddEventForm from '../components/AddEventForm'
 
 import { EventType } from '../interfaces';
 import svix from '../lib/svix';
-
 
 const IndexPage = () => {
   const [list, setList] = useState<EventType[]>([]);
@@ -25,11 +26,13 @@ const IndexPage = () => {
 
   const handleNewEvent = async (name: string, description: string) => {
     await svix.create(name, description);
-    getEventList();
+    await getEventList();
+    newEventDialog.onClose();
   };
 
   const confirm = useDisclosure();
   const prompt = useDisclosure();
+  const newEventDialog = useDisclosure();
 
   const [pendingDelete, setPendingDelete] = useState<string>('');
   const [pendingEdit, setPendingEdit] = useState<number | null>(null);
@@ -80,14 +83,13 @@ const IndexPage = () => {
     prompt.onClose();
   };
 
-
   useEffect(() => {
     getEventList();
   }, []);
 
   return (
     <Layout title="Svix Event Types Manager">
-      <Heading my={10}>Event Type List</Heading>
+      <Heading mb={12}>Event Types</Heading>
       <EventTypeList list={list} editRequest={editRequest} deleteRequest={deleteRequest} />
 
       {/* Delete confirm dialog */}
@@ -112,6 +114,19 @@ const IndexPage = () => {
             onChange={event => setDescription(event.target.value)} />
         </FormLabel>
       </PromptDialog>
+
+      {/* New event dialog */}
+      <Button
+        position="absolute"
+        rounded="100%"
+        right={-10}
+        bottom={-10}
+        width={20}
+        height={20}
+        fontSize="2xl"
+        colorScheme="gray"
+        onClick={newEventDialog.onOpen}>+</Button>
+      <AddEventForm onNewEvent={handleNewEvent} isOpen={newEventDialog.isOpen} onClose={newEventDialog.onClose} />
     </Layout>
   );
 };
