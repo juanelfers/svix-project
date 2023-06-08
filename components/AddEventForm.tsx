@@ -24,22 +24,16 @@ interface AddEventFormProps {
 }
 
 const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent, isOpen, onClose }) => {
-    const [loading, setLoading] = useState<boolean>(false);
     const [eventType, setEventType] = useState<EventType>({ name: '', description: '' })
 
-    const handleSubmit = async (event: React.SyntheticEvent) => {
-        event.preventDefault();
-
+    const handleSubmit = () => {
         if (!isValidForm(eventType)) return;
-
-        setLoading(true);
 
         // Push event
         const { name, description } = eventType;
-        await onNewEvent(name, description);
+        onNewEvent(name, description);
 
         // Resets state
-        setLoading(false);
         setEventType({ name: '', description: '' });
     }
 
