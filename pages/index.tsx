@@ -87,7 +87,7 @@ const IndexPage = () => {
 
   return (
     <Layout title="Svix Event Types Manager">
-      <Heading mb={4}>Event Type List</Heading>
+      <Heading my={10}>Event Type List</Heading>
       <EventTypeList list={list} editRequest={editRequest} deleteRequest={deleteRequest} />
 
       {/* Delete confirm dialog */}
