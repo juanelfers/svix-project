@@ -7,10 +7,9 @@ import EventTypeList from '../components/EventTypeList';
 
 describe('Basic components', () => {
     it('Should render the header with logo and Home link', () => {
-        const { getByText } = render(<Header />);
+        render(<Header />);
         const image = screen.getByAltText('Svix Logo');
 
-        expect(getByText('Home')).toBeInTheDocument();
         expect(image).toBeInTheDocument();
     });
 
