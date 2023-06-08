@@ -1,47 +1,79 @@
-# TypeScript Next.js example
+# Svix Manager
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+[Svix Manager](https://svix-project.vercel.app/) is a dashboard built in NextJS to manage your webhooks using the Svix service.
+In this version you will be able to:
+* List Event Types
+* Create new Event Types
+* Update Event Types description
+* Delete Event Types
 
-## Deploy your own
+you can try it at: https://svix-project.vercel.app/
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+# Table of Contents
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+1. [Requirements](#Requirements)
+2. [Installation](#Installation)
+4. [Development](#Development)
+5. [Project Journey 🚀](#Journey)
 
-## How to use it?
+# Requirements
+* [Node.js](https://nodejs.org/en/download)
+* [npm](https://docs.npmjs.com/getting-started)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-typescript with-typescript-app
+# Installation
+### Clone the repository:
+```sh
+git clone https://github.com/juanelfers/svix-project
+cd svix-project
+nom install
 ```
 
-```bash
-yarn create next-app --example with-typescript with-typescript-app
+# Development
+```sh
+npm run dev
 ```
+Then connect to localhost:3000
 
-```bash
-pnpm create next-app --example with-typescript with-typescript-app
-```
+# Journey
+### Selection of tools
+This application runs on a NextJS server and deploys automatically to Vercel
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Chakra UI was picked because it's the preferred UI of the Svix team, because it's one of the latest libraries for React and it requires minimum CSS adjustments to get a functional and visually appealing application
 
-## Notes
+This application also makes use of the svix npm library to simplify the queries to the Svix API
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
+### Change of plans
+Initially the project was built using the latest version of Vite+React+TS
 
-```
-npm install --save-dev typescript
-```
+After finishing a fully functional version, I decided to migrate it to NextJS thinking in the advantages it may bring in a future development.
 
-To enable TypeScript's features, we install the type declarations for React and Node.
+### Deciding on the fly and fixing styles
+Being my first time using Chakra UI, I was tempted to use more features than the ones I actually needed. Because there was no design for this application, I iterated over it a couple of times until I managed to get something I liked.
 
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
+Despite of using a well pollished UI, I started to see some details were a little bit off since the beginning of the development, some common issues with line-height and some elements that didn't line up very well because of some default paddings of the components.
 
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
+Luckily, newer UI libraries are really easy to customize by just adding some props.
 
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
+### SPA
+For the sake of simplicity, this is so far a SPA. At some point I added another page to create new event types, but I think it made much more sense to have everything in just one page and it was quite easy to move the page inside of a new modal
+(the app has 3 modals in total, to create, edit and delete event types)
 
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+### Final Design:
+After some refactor and adjustments on the styles, this is how this manager looks:
+![app](./screenshots/home.png)
+![new](./screenshots/new-event.png)
+![edit](./screenshots/edit-event.png)
+![delete](./screenshots/delete-event.png)
+
+## Conclusion
+This project gave me the opportunity to practice some of the things I already knew like NextJS and deploying to Vercel,
+but it was a nice small challenge to learn a new UI library like Chakra (and a pleasant suprise as well).
+
+I noticed that the Svix API is very user-friendly and I managed to make it work really quickly, having the required functionallity of the project in about half an hour
+
+## Future Improvements
+the following features and enhancements could be added to this Svix manager:
+1. **Validation and error handling**. Righ now the application has almost no validation for the user inputs and it doesn't handle possible errors. This would be a priority for further development
+2. **Create and edit event types**. Right now it's only possible to define the name and description of and event type, but the API allows you to set other attributes like "archived", "schemas" and "featureFlag"
+3. **Adding more tests and trying to move to a more TDD approach**. Testing is crucial to avoid mistakes during development. Writing useful tests always take time, but they can save you up a greater cost
+4. **Improved design**: I'm okay with the modals I used, but I think there is a lot of room to improvements, like disabling submit buttons when data is invalid, adding loaders and improving hierarchy between some elements
