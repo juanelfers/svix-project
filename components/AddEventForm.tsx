@@ -59,6 +59,8 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent }) => {
                         value={eventType.description}
                         name="description"
                         mt="2"
+                        placeholder="Describe your hook here"
+                        resize="none"
                         onChange={handleChange} />
                 </FormLabel>
 
