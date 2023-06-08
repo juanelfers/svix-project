@@ -7,8 +7,8 @@ import {
   Textarea,
   Button
 } from '@chakra-ui/react';
-import EventTypeList from '../components/EventTypeList';
 
+import EventTypeList from '../components/EventTypeList';
 import ConfirmDialog from '../components/ConfirmDialog';
 import PromptDialog from '../components/PromptDialog';
 import AddEventForm from '../components/AddEventForm'
@@ -119,14 +119,17 @@ const IndexPage = () => {
       <Button
         position="absolute"
         rounded="100%"
-        right={-10}
-        bottom={-10}
-        width={20}
-        height={20}
-        fontSize="2xl"
-        colorScheme="gray"
+        padding={0}
+        right={-8}
+        bottom={-8}
+        width={16}
+        height={16}
+        fontSize="4xl"
+        colorScheme="messenger"
         shadow="md"
-        onClick={newEventDialog.onOpen}>+</Button>
+        onClick={newEventDialog.onOpen}>
+          <span style={{ transform: 'translateY(-4px)' }}>+</span>
+        </Button>
       <AddEventForm onNewEvent={handleNewEvent} isOpen={newEventDialog.isOpen} onClose={newEventDialog.onClose} />
     </Layout>
   );

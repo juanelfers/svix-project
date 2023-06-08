@@ -32,12 +32,10 @@ const EventTypeList: React.FC<EventTypeListProps> = ({ list, editRequest, delete
 
     return (
         <>
-            {/*<Text>
-                {!list.length ? 'Loading...' : (
-                    list.length + 'events'
-                )}
-            </Text>*/}
-            <Table>
+            <Text as='em' visibility={!list.length ? 'hidden' : null} color="#0078ff">
+                Showing {list.length} events
+            </Text>
+            <Table mt={5}>
                 <Thead>
                     <Tr>
                         <Th pl={0}>Name</Th>
