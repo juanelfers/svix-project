@@ -48,7 +48,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent, isOpen, onClose
             message="Add new event"
             onConfirm={handleSubmit}>
             <FormControl>
-                <FormLabel>
+                <FormLabel mr={0}>
                     Event Type Name
                     <Input
                         value={eventType.name}
@@ -59,7 +59,7 @@ const AddEventForm: React.FC<AddEventFormProps> = ({ onNewEvent, isOpen, onClose
                         onChange={handleChange} />
                 </FormLabel>
 
-                <FormLabel>
+                <FormLabel mr={0}>
                     Description
                     <Textarea
                         value={eventType.description}
