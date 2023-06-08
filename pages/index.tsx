@@ -105,7 +105,7 @@ const IndexPage = () => {
         onCancel={onPromptClose}
         message="Edit description"
         onConfirm={handleEdit}>
-        <FormLabel>
+        <FormLabel mr={0}>
           Description
           <Textarea
             mt="2"
