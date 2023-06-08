@@ -125,6 +125,7 @@ const IndexPage = () => {
         height={20}
         fontSize="2xl"
         colorScheme="gray"
+        shadow="md"
         onClick={newEventDialog.onOpen}>+</Button>
       <AddEventForm onNewEvent={handleNewEvent} isOpen={newEventDialog.isOpen} onClose={newEventDialog.onClose} />
     </Layout>

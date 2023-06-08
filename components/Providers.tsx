@@ -1,16 +1,5 @@
 import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-
-const theme = extendTheme({
-    styles: {
-        global: () => ({
-            body: {
-                bg: "#eee",
-            },
-        }),
-    },
-});
-
+import { ChakraProvider } from '@chakra-ui/react'
 
 export default function Providers({
     children
@@ -19,7 +8,7 @@ export default function Providers({
 }) {
     return (
         <CacheProvider>
-            <ChakraProvider theme={theme}>
+            <ChakraProvider>
                 {children}
             </ChakraProvider>
         </CacheProvider>

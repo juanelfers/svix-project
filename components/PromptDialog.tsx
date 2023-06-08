@@ -41,7 +41,7 @@ const PromptDialog: React.FC<ConfirmDialogProps> = ({ isOpen, onCancel, message,
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button colorScheme='blue' mr={3} onClick={onConfirm}>Save</Button>
+                    <Button colorScheme="messenger" mr={3} onClick={onConfirm}>Save</Button>
                     <Button onClick={onCancel}>Cancel</Button>
                 </ModalFooter>
             </ModalContent>
