@@ -75,8 +75,9 @@ I noticed that the Svix API is very user-friendly and I managed to make it work 
 
 ## Future Improvements
 the following features and enhancements could be added to this Svix manager:
-1. **Validation and error handling**. Righ now the application has almost no validation for the user inputs and it doesn't handle possible errors. This would be a priority for further development
-2. **Mobile**. This is a priority; thinking in different devices while developing is a must, and there are always adjustments we need to do to make it look fine, no matter what kind of screen or device we use. Because it was not a requirement, I decided to leave this for a next iteration
-3. **Create and edit event types**. Right now it's only possible to define the name and description of and event type, but the API allows you to set other attributes like "archived", "schemas" and "featureFlag"
-4. **Adding more tests and trying to move to a more TDD approach**. Testing is crucial to avoid mistakes during development. Writing useful tests always take time, but they can save you up a greater cost
-5. **Improved design**: I'm okay with the modals I used, but I think there is a lot of room to improvements, like disabling submit buttons when data is invalid, adding loaders and improving hierarchy between some elements
+1. **Pagination**. This was initially proposed but was left for a future version. It is worth mentioning that it would be a functionality entirely handled by the front end, as the Svix API currently does not have pagination on this endpoint
+2. **Validation and error handling**. Right now the application has almost no validation for the user inputs and it doesn't handle possible errors. This would be a priority for further development
+3. **Mobile**. This is a priority; thinking in different devices while developing is a must, and there are always adjustments we need to do to make it look fine, no matter what kind of screen or device we use. Because it was not a requirement, I decided to leave this for a next iteration
+4. **Create and edit event types**. Right now it's only possible to define the name and description of and event type, but the API allows you to set other attributes like "archived", "schemas" and "featureFlag"
+5. **Adding more tests and trying to move to a more TDD approach**. Testing is crucial to avoid mistakes during development. Writing useful tests always take time, but they can save you a greater cost
+6. **Improved design**: I'm okay with the modals I used, but I think there is a lot of room to improvements, like disabling submit buttons when data is invalid, adding loaders and improving the hierarchy between some elements
