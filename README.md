@@ -1,83 +1,75 @@
 # Svix Manager
 
-[Svix Manager](https://svix-project.vercel.app/) is a dashboard built in NextJS to manage your webhooks using the Svix service.
-In this version you will be able to:
-* List Event Types
-* Create new Event Types
-* Update Event Types description
-* Delete Event Types
+> A clean dashboard to manage your [Svix](https://www.svix.com/) webhooks — list, create, edit and delete event types from one place.
 
-you can try it at: https://svix-project.vercel.app/
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Chakra UI](https://img.shields.io/badge/Chakra_UI-319795?style=flat-square&logo=chakraui&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
-# Table of Contents
+**🔗 Live demo: [svix-project.vercel.app](https://svix-project.vercel.app/)**
 
-1. [Requirements](#Requirements)
-2. [Installation](#Installation)
-4. [Development](#Development)
-5. [Project Journey 🚀](#Journey)
+![Svix Manager home](./screenshots/home.png)
 
-# Requirements
-* [Node.js](https://nodejs.org/en/download)
-* [npm](https://docs.npmjs.com/getting-started)
+## Features
 
-# Installation
-### Clone the repository:
+- **List** every event type registered in your Svix environment
+- **Create** new event types with name and description
+- **Edit** an event type's description
+- **Delete** event types with a confirmation step
+- Single-page UI with dedicated modals for each action
+
+## Tech stack
+
+- **[Next.js](https://nextjs.org/)** — React framework, deployed on Vercel
+- **TypeScript** — type-safe components and API layer
+- **[Chakra UI](https://chakra-ui.com/)** — accessible component library
+- **[Svix](https://www.svix.com/)** — webhooks-as-a-service, accessed through the official `svix` npm client
+- **Jest** + **Testing Library** — unit tests
+
+## Getting started
+
+**Requirements:** [Node.js](https://nodejs.org/en/download) and npm.
+
 ```sh
 git clone https://github.com/juanelfers/svix-project
 cd svix-project
-nom install
-```
-
-# Development
-```sh
+npm install
 npm run dev
 ```
-Then connect to localhost:3000
 
-# Journey
-### Selection of tools
-This application runs on a NextJS server and deploys automatically to Vercel
+Then open [http://localhost:3000](http://localhost:3000).
 
-Chakra UI was picked because 
-1. it's the preferred UI of the Svix team, because 
-2. it's one of the latest libraries for React 
-3. it requires minimum CSS adjustments to get a functional and visually appealing application
+## Testing
 
-This application also makes use of the svix npm library to simplify the queries to the Svix API
+```sh
+npm test          # run the test suite
+npm run coverage  # run with coverage report
+```
 
-### Change of plans
-Initially, the project was built using the latest version of Vite+React+TS
+## Screenshots
 
-After finishing a fully functional version, I decided to migrate it to NextJS thinking about the advantages it may offer in a future development.
+| Create | Edit | Delete |
+| :----: | :--: | :----: |
+| ![new](./screenshots/new-event.png) | ![edit](./screenshots/edit-event.png) | ![delete](./screenshots/delete-event.png) |
 
-### Deciding on the fly and fixing styles
-Being my first time using Chakra UI, I was tempted to use more features than the ones I actually needed. As there was no design for this application, I iterated over it a couple of times until I managed to get something I liked.
+## Notes & design decisions
 
-Despite using a well-polished UI, I started to see some details that were a little bit off since the beginning of the development, some common issues with line-height and some elements that didn't line up very well because of some default paddings of the components.
+The app started as a Vite + React + TS SPA and was later migrated to Next.js to
+keep the door open for server-side features. Chakra UI was chosen because it is
+the Svix team's preferred library and needs very little custom CSS to get a
+functional, polished result. Everything lives on a single page, with the create,
+edit and delete flows handled through three modals.
 
-Luckily, newer UI libraries are really easy to customize by just adding some props.
+## Possible improvements
 
-### SPA
-For the sake of simplicity, this is so far an SPA. At some point, I added another page to create new event types, but I think it made much more sense to have everything on just one page and it was quite easy to move the page inside of a new modal.
-(the app has 3 modals in total: to create, edit and delete event types)
+- Pagination on the event-types list (front-end only — the Svix endpoint has none)
+- Input validation and error handling
+- Responsive / mobile layout
+- Expose the remaining event-type attributes (`archived`, `schemas`, `featureFlag`)
+- More tests and a TDD-first workflow
 
-### Final Design:
-After some refactor and adjustments on the styles, this is how this manager looks:
-![app](./screenshots/home.png)
-![new](./screenshots/new-event.png)
-![edit](./screenshots/edit-event.png)
-![delete](./screenshots/delete-event.png)
+## License
 
-## Conclusion
-This project gave me the opportunity to practice some of the things I already knew well like NextJS and deploying to Vercel, but it was a nice little challenge to learn a new UI library like Chakra (and a pleasant surprise as well).
-
-I noticed that the Svix API is very user-friendly and I managed to make it work really quickly, reaching the required project functionality in about half an hour
-
-## Future Improvements
-the following features and enhancements could be added to this Svix manager:
-1. **Pagination**. This was initially proposed but was left for a future version. It is worth mentioning that it would be a functionality entirely handled by the front end, as the Svix API currently does not have pagination on this endpoint
-2. **Validation and error handling**. Right now the application has almost no validation for the user inputs and it doesn't handle possible errors. This would be a priority for further development
-3. **Mobile**. This is a priority; thinking in different devices while developing is a must, and there are always adjustments we need to do to make it look fine, no matter what kind of screen or device we use. Because it was not a requirement, I decided to leave this for a next iteration
-4. **Create and edit event types**. Right now it's only possible to define the name and description of and event type, but the API allows you to set other attributes like "archived", "schemas" and "featureFlag"
-5. **Adding more tests and trying to move to a more TDD approach**. Testing is crucial to avoid mistakes during development. Writing useful tests always take time, but they can save you a greater cost
-6. **Improved design**: I'm okay with the modals I used, but I think there is a lot of room to improvements, like disabling submit buttons when data is invalid, adding loaders and improving the hierarchy between some elements
+[MIT](./LICENSE) © Juan Elfers
